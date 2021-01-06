@@ -1,0 +1,42 @@
+OpenCv이미지 변형
+
+1.이미지 크기 조절
+400x400 ->800x800
+중간에 추가되는 픽셀들을 어떻게 채울 것인가?
+-->보간법(Interpolation)을 이용
+cv2.resize(image,dsize,fx,fy,interpolation)
+-dsize:Manaual Size
+-fx:가로 비율
+-fy:세로 비율
+-interpolation
+: INTER_CUBIC(주로 사이즈를 크게할 때), INTER_AREA(주로 사이즈를 작게 할 때)
+
+2.이미지 위치 변경(선형대수학,컴퓨터 비젼 측면 공부 필요)
+->Affine 변환
+cv2.warpAffine(image,M,dsize) : 위치,이미지의 방향,회전 가능
+M:변환 행렬->변환행렬에 따라 이미지를 자유자재롤 변환 가능
+
+M = [m11 m12 m12]
+    [m21 m22 m23]
+
+
+ex)
+     [ 1 0 tx]
+M이  [ 0 1 ty] 일때 (a,b) ->(a+tx,b+ty)로 바뀐다
+
+3.이미지 회전
+-2에서 처럼 변환 행렬을 만들어서 사용가능
+-cv2.getRotationMatrix2D(center,angle,scale) :이미지 회전을 위한 변환 행렬을 생성합니다.
+center:회전 중심
+angele:회전 각도
+scale:Scale Factor
+
+4.이미지 합치기
+-방법1.cv2.add():Saturation 연산을 수행합니다
+    0보다 작으면 0 , 255보다 크면 255로 표현 //보통 clip이라는 연산이라고 부른다
+
+-방법2. np.add():Modulo(나머지) 연산을 수행 합니다.
+    256은 0 ,257은 1로 표현
+
+보통 방법1을 이용한다.
+
