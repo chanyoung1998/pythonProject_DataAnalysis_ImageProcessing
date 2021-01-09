@@ -5,6 +5,7 @@ Contours(외관,테두리를 의미) 찾기
 1.cv2.findContours(image,mode,method):이미지에서 Contour들을 찾는 함수
 -mode:Contour들을 찾는 방법
 -method:Coutour들을 찾는 근사치 방법
+-return:윤곽선, 계층 구조를 반환합니다.
 
 ***입력 이미지는 Gray Scale Threshold 전처리 과정이 필요합니다.****
 
@@ -14,3 +15,19 @@ Contours(외관,테두리를 의미) 찾기
 
 *참고사이트
 https://076923.github.io/posts/Python-opencv-21/
+
+3.cv2.boundingRect(contour):Contour를 포함하는 사각형을 그립니다
+-return:사각형의 x,y좌표와 너비,높이를 반환합니다.
+
+4.cv2.convexHull(contour):Convex Hull알고리즘으로 외곽을 구하는 함수
+-대략적인 형태의 Contour 외곽을 빠르게 구할 수 있다(단일 contour 반환)
+
+5.cv2.approxPolyDP(curve,epsilon,closed):근사치 contour를 구한다
+-curve:Contour
+-epsilon:최대 거리(클수로 point  개수 감수, 작을수록 원래의 contour와 비슷한 유사 다각형을 그려준다)
+-closed:폐곡선인지 여부
+
+6.Contour의 기본정보
+-cv2.contourArea(contour):면적을 반환
+-cv2.arcLength(contour):둘레를 반환
+-cv2.moments(contour):특징을 반환
