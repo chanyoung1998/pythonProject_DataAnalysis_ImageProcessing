@@ -2,7 +2,7 @@ import os
 import cv2
 import utils
 
-image = cv2.imread('1.png')
+image = cv2.imread('4.png')
 chars = utils.extract_chars(image)
 
 for char in chars:
@@ -17,5 +17,5 @@ for char in chars:
     elif input == ord('a') or input == ord('b') or input == ord('c'):
         name = str(input-ord('a') +10)
         file_count = len(next(os.walk('./training_data/' + name + '/'))[2])
-        cv2.imwrite('./training_data/' + str(input - 48) + '/' + str(file_count + 1) + '.png', resized)
+        cv2.imwrite('./training_data/' + name + '/' + str(file_count + 1) + '.png', resized)
 
